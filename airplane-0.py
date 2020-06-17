@@ -3,8 +3,7 @@ num = input("Enter the number of seats:")
 number = int(num)
 row = 0
 tempFilled = -1
-
-def construct(seatsGrid):
+def allocate(seatsGrid):
     seats = []
     for i in seatsGrid:
         rows = i[1]
@@ -14,7 +13,6 @@ def construct(seatsGrid):
             mat.append([-1]*cols)
         seats.append(mat)
     return seats
-
 def printSeats(seats):
     blksize = len(str(number))
     rows = [x[1] for x in seatsGrid]
@@ -54,7 +52,6 @@ def printSeats(seats):
             top = False
         print('    '.join(rowlist))
         print('    '.join(rowlistl))
-
 def fill_aisle_seats():
     # filled = 0
     global filled
@@ -89,7 +86,6 @@ def fill_aisle_seats():
                         if filled >= number:
                             break
         row += 1
-
 def fill_window_seats():
     row = 0
     global filled
@@ -110,7 +106,6 @@ def fill_window_seats():
             if filled >= number:
                 break
         row += 1
-
 def fill_middle_seats():
     row = 0
     tempFilled = 0
@@ -126,16 +121,11 @@ def fill_middle_seats():
                         if filled >= number:
                             break
         row += 1
-
 seatsGrid = [[3,2], [4,3], [2,3], [3,4]]
-seats = construct(seatsGrid)
-# print seats
+seats = allocate(seatsGrid)
 length = len(seatsGrid)
-# Aisle
 fill_aisle_seats()
-# Window
 fill_window_seats()
-# Center
 row = 0
 tempFilled = 0
 fill_middle_seats()
